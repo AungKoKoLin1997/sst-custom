@@ -11,7 +11,10 @@ class PurchaseOrder(models.Model):
     request_channel_id = fields.Many2one("request.channel", "Request Channel")
     request_medium_id = fields.Many2one("request.medium", "Request Medium")
     employee_id = fields.Many2one("hr.employee", "Received By")
-    purchase_category_id = fields.Many2one("purchase.category", "Purchase Category",)
+    purchase_category_id = fields.Many2one(
+        "purchase.category",
+        "Purchase Category",
+    )
     call_back = fields.Boolean("Call Back")
     shop_id = fields.Many2one("stock.warehouse", "Shop")
     phone_update = fields.Char()
@@ -24,7 +27,10 @@ class PurchaseOrder(models.Model):
         },
     )
     supplier_phone = fields.Char(
-        related="partner_id.phone", string="Supplier Phone", readonly=True, store=True,
+        related="partner_id.phone",
+        string="Supplier Phone",
+        readonly=True,
+        store=True,
     )
     supplier_mobile = fields.Char(
         related="partner_id.mobile",
@@ -64,7 +70,9 @@ class PurchaseOrder(models.Model):
         ],
         string="Worked Hours",
     )
-    date_planned = fields.Datetime(compute=False,)
+    date_planned = fields.Datetime(
+        compute=False,
+    )
     sale_prediction_amount = fields.Monetary("Sales Prediction")
 
     @api.onchange("purchased_by_id")
